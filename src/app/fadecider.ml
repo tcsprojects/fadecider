@@ -15,7 +15,7 @@ module CommandLine = struct
 
 	let header =
 		"\nRamsey-based Universality and Subsumption Checker for Automata\n" ^
-		"Version 0.4, Copyright (c) 2011-2014\n\n" ^
+		"Version 0.4, Copyright (c) 2011-2016\n\n" ^
 		"Authors: Oliver Friedmann (University of Munich)\n" ^
 	    "         Felix Klaedtke (ETH Zurich)\n" ^
 	    "         Martin Lange (University of Kassel)\n" ^
@@ -53,7 +53,8 @@ let get_automaton_info = function
 	NpaType (_,s,a) -> [("type", "NPA"); ("states", string_of_int (Iterators.cardinal s)); ("alphabet", string_of_int (Iterators.cardinal a))]
 |	NbaType (_,s,a) -> [("type", "NBA"); ("states", string_of_int (Iterators.cardinal s)); ("alphabet", string_of_int (Iterators.cardinal a))]
 |	DpaType (_,s,a) -> [("type", "DPA"); ("states", string_of_int (Iterators.cardinal s)); ("alphabet", string_of_int (Iterators.cardinal a))]
-|	DbaType (_,s,a) -> [("type", "DBA"); ("states", string_of_int (Iterators.cardinal s)); ("alphabet", string_of_int (Iterators.cardinal a))]|	NpvpaType (_,s,a,st) -> [("type", "NPVPA"); ("states", string_of_int (Iterators.cardinal s)); ("alphabet", string_of_int (Iterators.cardinal a)); ("stack", string_of_int (Iterators.cardinal st))]
+|	DbaType (_,s,a) -> [("type", "DBA"); ("states", string_of_int (Iterators.cardinal s)); ("alphabet", string_of_int (Iterators.cardinal a))]
+|	NpvpaType (_,s,a,st) -> [("type", "NPVPA"); ("states", string_of_int (Iterators.cardinal s)); ("alphabet", string_of_int (Iterators.cardinal a)); ("stack", string_of_int (Iterators.cardinal st))]
 |	NbvpaType (_,s,a,st) -> [("type", "NBVPA"); ("states", string_of_int (Iterators.cardinal s)); ("alphabet", string_of_int (Iterators.cardinal a)); ("stack", string_of_int (Iterators.cardinal st))]
 |	DpvpaType (_,s,a,st) -> [("type", "DPVPA"); ("states", string_of_int (Iterators.cardinal s)); ("alphabet", string_of_int (Iterators.cardinal a)); ("stack", string_of_int (Iterators.cardinal st))]
 |	DbvpaType (_,s,a,st) -> [("type", "DBVPA"); ("states", string_of_int (Iterators.cardinal s)); ("alphabet", string_of_int (Iterators.cardinal a)); ("stack", string_of_int (Iterators.cardinal st))]

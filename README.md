@@ -3,7 +3,7 @@ FADecider
 
 A package for deciding universality and subsumption of omega automata using Ramsey-based methods.
 
-Version 0.4, Copyright (c) 2011-2013
+Version 0.4, Copyright (c) 2011-2016
 
 It is developed and maintained by:
 - (c) Oliver Friedmann, University of Munich (http://oliverfriedmann.de)
