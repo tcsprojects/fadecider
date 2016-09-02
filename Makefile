@@ -6,7 +6,7 @@ endif
 
 CPPCOMPILER=-cc $(OCAMLOPTCPP)
 
-INCLUDES=-I $(SRCDIR) -I $(OBJDIR) -I $(OCAML_DIR) -I $(TCSLIBOBJ)
+INCLUDES=-I $(SRCDIR) -I $(OBJDIR) -I $(TCSLIBOBJ)
 
 MODULES=$(OBJDIR)/base.cmx \
         $(OBJDIR)/solvers.cmx \
