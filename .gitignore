@@ -11,3 +11,5 @@
 bin/*
 .project
 Config
+.idea
+_build

@@ -1,0 +1,8 @@
+"src/app": include
+"src/ramsey": include
+"src/tools": include
+"src/generators": include
+"tcslib/src/utils": include
+"tcslib/src/data": include
+"tcslib/src/automata/parser": include
+"tcslib/src/automata": include

@@ -15,7 +15,7 @@ module CommandLine = struct
 
 	let header =
 		"\nRamsey-based Universality and Subsumption Checker for Automata\n" ^
-		"Version 0.4, Copyright (c) 2011-2016\n\n" ^
+		"Version 0.5, Copyright (c) 2011-2017\n\n" ^
 		"Authors: Oliver Friedmann (University of Munich)\n" ^
 	    "         Felix Klaedtke (ETH Zurich)\n" ^
 	    "         Martin Lange (University of Kassel)\n" ^

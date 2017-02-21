@@ -3,7 +3,7 @@ FADecider
 
 A package for deciding universality and subsumption of omega automata using Ramsey-based methods.
 
-Version 0.4, Copyright (c) 2011-2016
+Version 0.5, Copyright (c) 2011-2017
 
 It is developed and maintained by:
 - (c) Oliver Friedmann, University of Munich (http://oliverfriedmann.de)
@@ -13,10 +13,15 @@ It is developed and maintained by:
 
 ## Installation
 
-- Install OCaml.
-- Run "git submodule update --init" to checkout TCSLib
-- Create a copy of Config.default, name it Config and modify it to fit your configuration
-- Run make
+Install OCaml, OUnit, OPAM, Ocamlbuild.
+
+Then:
+```bash	
+git clone https://github.com/tcsprojects/fadecider.git
+cd fadecider
+git submodule update --init
+make
+```
 
 
 ## Benchmarks & Credits
