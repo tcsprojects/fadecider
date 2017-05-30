@@ -2,3 +2,4 @@
 _build
 *.log
 setup.data
+bin
