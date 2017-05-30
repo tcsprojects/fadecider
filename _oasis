@@ -1,0 +1,50 @@
+OASISFormat: 0.4
+Name:        fadecider
+Version:     0.6
+Synopsis:    A package for deciding universality and subsumption of omega automata using Ramsey-based methods.
+Description: A package for deciding universality and subsumption of omega automata using Ramsey-based methods.
+Authors:     Oliver Friedmann, Felix Klaedtke, Martin Lange
+Maintainers: Oliver Friedmann, Felix Klaedtke, Martin Lange
+OCamlVersion: >= 4.03.0
+License:     BSD-3-clause
+Homepage: https://github.com/tcsprojects/fadecider
+SourceRepository head
+  Type: git
+  Location: git://github.com/tcsprojects/fadecider.git
+  Browser: https://github.com/tcsprojects/fadecider
+Plugins:     META
+BuildTools: ocamlbuild
+Library "fadecider"
+  Path:       src
+  BuildDepends: TCSLib
+  Modules: app/Base, ramsey/Cachedtaggedtrapo, ramsey/Cachedtrapo, ramsey/Solvers, ramsey/Subsumption,
+           ramsey/Taggedtrapo, ramsey/Trapo, ramsey/Universality, ramsey/Solverregistry
+PostBuildCommand: mv fadecider.* bin/fadecider ; mv transform.* bin/transform ; mv subtouniv.* bin/subtouniv ; mv toopennwa.* bin/toopennwa ; mv collapse.* bin/collapse ; mv randomnpa.* bin/randomnpa ; mv randomnpvpa.* bin/randomnpvpa
+Executable "fadecider-bin"
+  Path: src/app
+  BuildDepends: fadecider
+  MainIs: fadecider.ml
+Executable "transform-bin"
+  Path: src/tools
+  BuildDepends: fadecider
+  MainIs: transform.ml
+Executable "subtouniv-bin"
+  Path: src/tools
+  BuildDepends: fadecider
+  MainIs: subtouniv.ml
+Executable "toopennwa-bin"
+  Path: src/tools
+  BuildDepends: fadecider
+  MainIs: toopennwa.ml
+Executable "collapse-bin"
+  Path: src/tools
+  BuildDepends: fadecider
+  MainIs: collapse.ml
+Executable "randomnpa-bin"
+  Path: src/generators
+  BuildDepends: fadecider
+  MainIs: randomnpa.ml
+Executable "randomnpvpa-bin"
+  Path: src/generators
+  BuildDepends: fadecider
+  MainIs: randomnpvpa.ml

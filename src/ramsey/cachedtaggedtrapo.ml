@@ -6,7 +6,7 @@ open Tcsset;;
 open Tcslist;;
 open Tcstiming;;
 open Tcscache;;
-open Solvers;;
+open Solverregistry;;
 open Trapo;;
 open Taggedtrapo;;
 open Cachedtrapo;;

@@ -5,7 +5,7 @@ open Tcsautohelper;;
 open Tcsset;;
 open Tcslist;;
 open Tcstiming;;
-open Solvers;;
+open Solverregistry;;
 open Trapo;;
 
 

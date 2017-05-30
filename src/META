@@ -1,0 +1,13 @@
+# OASIS_START
+# DO NOT EDIT (digest: e2d0cd4c914910a793a46f84f1f28bc9)
+version = "0.6"
+description =
+"A package for deciding universality and subsumption of omega automata using Ramsey-based methods."
+requires = "TCSLib"
+archive(byte) = "fadecider.cma"
+archive(byte, plugin) = "fadecider.cma"
+archive(native) = "fadecider.cmxa"
+archive(native, plugin) = "fadecider.cmxs"
+exists_if = "fadecider.cma"
+# OASIS_STOP
+

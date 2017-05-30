@@ -6,7 +6,7 @@ open Tcsset;;
 open Tcslist;;
 open Tcstiming;;
 open Base;;
-open Solvers;;
+open Solverregistry;;
 open Trapo;;
 open Cachedtrapo;;
 
@@ -167,18 +167,6 @@ end;;
 
 
 
-UniversalitySolvers.register {
-	UniversalitySolvers.ident = "npa";
-	UniversalitySolvers.description = "npa universality test";
-	UniversalitySolvers.automata_class = NpaClass;
-	UniversalitySolvers.solve = (function (NpaType (npa, states, alpha)) -> (
-					let f info _ = "Info: " ^ string_of_int (info.NpaUniversality.box_count) ^ " boxes\n" in
-					match NpaUniversality.is_universal npa states alpha with
-						(info, None) -> (UniversalitySolvers.Universal, f info)
-					|	(info, Some w) -> (UniversalitySolvers.NotAccepting w, f info)
-				)
-	          | _ -> failwith "wrong automaton class");
-}
 
 
 module FiniteNbaUniversality = struct
@@ -248,18 +236,6 @@ end;;
 
 
 
-UniversalitySolvers.register {
-	UniversalitySolvers.ident = "finite_nba";
-	UniversalitySolvers.description = "finite nba universality test";
-	UniversalitySolvers.automata_class = NbaClass;
-	UniversalitySolvers.solve = (function (NbaType (nba, states, alpha)) -> (
-					let f info _ = "Info: " ^ string_of_int (info.FiniteNbaUniversality.box_count) ^ " boxes\n" in
-					match FiniteNbaUniversality.is_universal nba states alpha with
-						(info, None) -> (UniversalitySolvers.Universal, f info)
-					|	(info, Some w) -> (UniversalitySolvers.NotAccepting w, f info)
-				)
-	          | _ -> failwith "wrong automaton class");
-}
 
 
 
@@ -418,18 +394,6 @@ end;;
 
 
 
-UniversalitySolvers.register {
-	UniversalitySolvers.ident = "npvpa";
-	UniversalitySolvers.description = "npvpa universality test";
-	UniversalitySolvers.automata_class = NpvpaClass;
-	UniversalitySolvers.solve = (function (NpvpaType (npvpa, states, alpha, stack)) -> (
-					let f info _ = "Info: " ^ string_of_int (info.NpvpaUniversality.box_count) ^ " boxes\n" in
-					match NpvpaUniversality.is_universal npvpa states alpha stack with
-						(info, None) -> (UniversalitySolvers.Universal, f info)
-					|	(info, Some w) -> (UniversalitySolvers.NotAccepting w, f info)
-				)
-	          | _ -> failwith "wrong automaton class");
-}
 
 
 
@@ -578,6 +542,43 @@ end;;
 
 
 
+let register _ =
+UniversalitySolvers.register {
+	UniversalitySolvers.ident = "npa";
+	UniversalitySolvers.description = "npa universality test";
+	UniversalitySolvers.automata_class = NpaClass;
+	UniversalitySolvers.solve = (function (NpaType (npa, states, alpha)) -> (
+					let f info _ = "Info: " ^ string_of_int (info.NpaUniversality.box_count) ^ " boxes\n" in
+					match NpaUniversality.is_universal npa states alpha with
+						(info, None) -> (UniversalitySolvers.Universal, f info)
+					|	(info, Some w) -> (UniversalitySolvers.NotAccepting w, f info)
+				)
+	          | _ -> failwith "wrong automaton class");
+};
+UniversalitySolvers.register {
+	UniversalitySolvers.ident = "finite_nba";
+	UniversalitySolvers.description = "finite nba universality test";
+	UniversalitySolvers.automata_class = NbaClass;
+	UniversalitySolvers.solve = (function (NbaType (nba, states, alpha)) -> (
+					let f info _ = "Info: " ^ string_of_int (info.FiniteNbaUniversality.box_count) ^ " boxes\n" in
+					match FiniteNbaUniversality.is_universal nba states alpha with
+						(info, None) -> (UniversalitySolvers.Universal, f info)
+					|	(info, Some w) -> (UniversalitySolvers.NotAccepting w, f info)
+				)
+	          | _ -> failwith "wrong automaton class");
+};
+UniversalitySolvers.register {
+	UniversalitySolvers.ident = "npvpa";
+	UniversalitySolvers.description = "npvpa universality test";
+	UniversalitySolvers.automata_class = NpvpaClass;
+	UniversalitySolvers.solve = (function (NpvpaType (npvpa, states, alpha, stack)) -> (
+					let f info _ = "Info: " ^ string_of_int (info.NpvpaUniversality.box_count) ^ " boxes\n" in
+					match NpvpaUniversality.is_universal npvpa states alpha stack with
+						(info, None) -> (UniversalitySolvers.Universal, f info)
+					|	(info, Some w) -> (UniversalitySolvers.NotAccepting w, f info)
+				)
+	          | _ -> failwith "wrong automaton class");
+};
 UniversalitySolvers.register {
 	UniversalitySolvers.ident = "finite_nbvpa";
 	UniversalitySolvers.description = "finite nbvpa universality test";
@@ -589,5 +590,5 @@ UniversalitySolvers.register {
 					|	(info, Some w) -> (UniversalitySolvers.NotAccepting w, f info)
 				)
 	          | _ -> failwith "wrong automaton class");
-}
+};;
 

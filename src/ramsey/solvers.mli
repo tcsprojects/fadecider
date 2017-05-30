@@ -1,7 +1,7 @@
 open Tcsautomataparser;;
 
 
-type automata_class = NbaClass | DbaClass | NpaClass | DpaClass | NbvpaClass | DbvpaClass | NpvpaClass | DpvpaClass
+type automata_class = Solverregistry.automata_class
 
 val format_automata_class: automata_class -> string
 
@@ -10,16 +10,11 @@ val automata_class_match: automata_type -> automata_class -> bool
 
 module UniversalitySolvers: sig
 
-	type result = Universal | NotAccepting of string
+	type result = Solverregistry.UniversalitySolvers.result
 	
-	type solver_function = automata_type -> result * (unit -> string)
+	type solver_function = Solverregistry.UniversalitySolvers.solver_function
 	
-	type solver = {
-		ident: string;
-		description: string;
-		automata_class: automata_class;
-		solve: solver_function;
-	}
+	type solver = Solverregistry.UniversalitySolvers.solver
 	
 	val register: solver -> unit
 
@@ -36,17 +31,11 @@ end
 
 module SubsumptionSolvers: sig
 
-	type result = Subsumed | NotSubsumed of string
+	type result = Solverregistry.SubsumptionSolvers.solver_function
 	
-	type solver_function = automata_type -> automata_type -> result * (unit -> string)
+	type solver_function = Solverregistry.SubsumptionSolvers.solver_function
 	
-	type solver = {
-		ident: string;
-		description: string;
-		automata_class_major: automata_class;
-		automata_class_minor: automata_class;
-		solve: solver_function;
-	}
+	type solver = Solverregistry.SubsumptionSolvers.solver
 	
 	val register: solver -> unit
 

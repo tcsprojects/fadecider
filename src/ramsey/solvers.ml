@@ -2,88 +2,55 @@ open Tcsautomataparser;;
 open Tcsset;;
 
 
-type automata_class = NbaClass | DbaClass | NpaClass | DpaClass | NbvpaClass | DbvpaClass | NpvpaClass | DpvpaClass
+type automata_class = Solverregistry.automata_class
 
-let format_automata_class = function
-	NbaClass -> "NBA"
-|	DbaClass -> "DBA"
-|	NpaClass -> "NPA"
-|	DpaClass -> "DPA"
-|	NbvpaClass -> "NBVPA"
-|	DbvpaClass -> "DBVPA"
-|	NpvpaClass -> "NPVPA"
-|	DpvpaClass -> "DPVPA"
+let format_automata_class = Solverregistry.format_automata_class
 
-let automata_class_match auto_type auto_class =  match (auto_type, auto_class) with
-	(NbaType _, NbaClass) -> true
-|	(DbaType _, DbaClass) -> true	
-|	(NpaType _, NpaClass) -> true	
-|	(DpaType _, DpaClass) -> true	
-|	(NbvpaType _, NbvpaClass) -> true
-|	(DbvpaType _, DbvpaClass) -> true	
-|	(NpvpaType _, NpvpaClass) -> true	
-|	(DpvpaType _, DpvpaClass) -> true	
-|	_ -> false
+let automata_class_match = Solverregistry.automata_class_match
 
 
 module UniversalitySolvers = struct
 
-	type result = Universal | NotAccepting of string
+	type result = Solverregistry.UniversalitySolvers.result
+
+	type solver_function = Solverregistry.UniversalitySolvers.solver_function
+
+	type solver = Solverregistry.UniversalitySolvers.solver
 	
-	type solver_function = automata_type -> result * (unit -> string)
+	let register = Solverregistry.UniversalitySolvers.register
 	
-	type solver = {
-		ident: string;
-		description: string;
-		automata_class: automata_class;
-		solve: solver_function;
-	}
+	let mem = Solverregistry.UniversalitySolvers.mem
 	
-	let solvers = ref TreeMap.empty_def
+	let find = Solverregistry.UniversalitySolvers.find
 	
-	let register solver =
-		if TreeMap.mem solver.ident !solvers
-		then failwith ("solver `" ^ solver.ident ^ "' already registered!\n")
-		else solvers := TreeMap.add solver.ident solver !solvers
+	let enum = Solverregistry.UniversalitySolvers.enum
 	
-	let mem ident = TreeMap.mem ident !solvers
-	
-	let find ident = TreeMap.find ident !solvers
-	
-	let enum it = TreeMap.iter (fun _ -> it) !solvers
-	
-	let fold fo b = TreeMap.fold (fun _ -> fo) !solvers b
+	let fold = Solverregistry.UniversalitySolvers.fold
 	
 end
 
 
 module SubsumptionSolvers = struct
 
-	type result = Subsumed | NotSubsumed of string
+	type result = Solverregistry.SubsumptionSolvers.solver_function
+
+	type solver_function = Solverregistry.SubsumptionSolvers.solver_function
+
+	type solver = Solverregistry.SubsumptionSolvers.solver
 	
-	type solver_function = automata_type -> automata_type -> result * (unit -> string)
+	let register = Solverregistry.SubsumptionSolvers.register
+
+	let mem = Solverregistry.SubsumptionSolvers.mem
 	
-	type solver = {
-		ident: string;
-		description: string;
-		automata_class_major: automata_class;
-		automata_class_minor: automata_class;
-		solve: solver_function;
-	}
+	let find = Solverregistry.SubsumptionSolvers.find
 	
-	let solvers = ref TreeMap.empty_def
+	let enum = Solverregistry.SubsumptionSolvers.enum
 	
-	let register solver =
-		if TreeMap.mem solver.ident !solvers
-		then failwith ("solver `" ^ solver.ident ^ "' already registered!\n")
-		else solvers := TreeMap.add solver.ident solver !solvers
-	
-	let mem ident = TreeMap.mem ident !solvers
-	
-	let find ident = TreeMap.find ident !solvers
-	
-	let enum it = TreeMap.iter (fun _ -> it) !solvers
-	
-	let fold fo b = TreeMap.fold (fun _ -> fo) !solvers b
+	let fold = Solverregistry.SubsumptionSolvers.fold
 	
 end
+
+
+let _ =
+    Subsumption.register ();
+    Universality.register ();;

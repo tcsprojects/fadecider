@@ -6,7 +6,7 @@ open Tcsset;;
 open Tcslist;;
 open Tcstiming;;
 open Base;;
-open Solvers;;
+open Solverregistry;;
 open Trapo;;
 open Taggedtrapo;;
 open Cachedtrapo;;
@@ -221,22 +221,6 @@ module NpaSubsumption = struct
 end;;
 
 
-SubsumptionSolvers.register {
-	SubsumptionSolvers.ident = "npa";
-	SubsumptionSolvers.description = "npa subsumption test";
-	SubsumptionSolvers.automata_class_major = NpaClass;
-	SubsumptionSolvers.automata_class_minor = NpaClass;
-	SubsumptionSolvers.solve = fun x y -> (
-		match (x,y) with
-			(NpaType (npa1, states1, _), NpaType (npa2, states2, alpha)) -> (
-					let f info _ = "Info: " ^ string_of_int (info.NpaSubsumption.box_count) ^ " morphisms\n" in
-					match NpaSubsumption.is_subsumed npa1 npa2 states1 states2 alpha with
-						(info, None) -> (SubsumptionSolvers.Subsumed, f info)
-					|	(info, Some s) -> (SubsumptionSolvers.NotSubsumed s, f info)
-			)
-		| _ -> failwith "wrong automaton class"
-	);
-}
 
 
 
@@ -315,22 +299,6 @@ module FiniteNbaSubsumption = struct
 end;;
 
 
-SubsumptionSolvers.register {
-	SubsumptionSolvers.ident = "finite_nba";
-	SubsumptionSolvers.description = "finite nba subsumption test";
-	SubsumptionSolvers.automata_class_major = NbaClass;
-	SubsumptionSolvers.automata_class_minor = NbaClass;
-	SubsumptionSolvers.solve = fun x y -> (
-		match (x,y) with
-			(NbaType (nba1, states1, _), NbaType (nba2, states2, alpha)) -> (
-					let f info _ = "Info: " ^ string_of_int (info.FiniteNbaSubsumption.box_count) ^ " morphisms\n" in
-					match FiniteNbaSubsumption.is_subsumed nba1 nba2 states1 states2 alpha with
-						(info, None) -> (SubsumptionSolvers.Subsumed, f info)
-					|	(info, Some s) -> (SubsumptionSolvers.NotSubsumed s, f info)
-			)
-		| _ -> failwith "wrong automaton class"
-	);
-}
 
 
 
@@ -500,22 +468,6 @@ module NpvpaSubsumption = struct
 end;;
 
 
-SubsumptionSolvers.register {
-	SubsumptionSolvers.ident = "npvpa";
-	SubsumptionSolvers.description = "npvpa subsumption test";
-	SubsumptionSolvers.automata_class_major = NpvpaClass;
-	SubsumptionSolvers.automata_class_minor = NpvpaClass;
-	SubsumptionSolvers.solve = fun x y -> (
-		match (x,y) with
-			(NpvpaType (npvpa1, states1, _, stack1), NpvpaType (npvpa2, states2, alpha, stack2)) -> (
-					let f info _ = "Info: " ^ string_of_int (info.NpvpaSubsumption.box_count) ^ " morphisms\n" in
-					match NpvpaSubsumption.is_subsumed npvpa1 npvpa2 states1 states2 alpha stack1 stack2 with
-						(info, None) -> (SubsumptionSolvers.Subsumed, f info)
-					|	(info, Some s) -> (SubsumptionSolvers.NotSubsumed s, f info)
-			)
-		| _ -> failwith "wrong automaton class"
-	);
-}
 
 
 module FiniteNbvpaSubsumption = struct
@@ -662,6 +614,55 @@ module FiniteNbvpaSubsumption = struct
 end;;
 
 
+let register _ =
+SubsumptionSolvers.register {
+	SubsumptionSolvers.ident = "npa";
+	SubsumptionSolvers.description = "npa subsumption test";
+	SubsumptionSolvers.automata_class_major = NpaClass;
+	SubsumptionSolvers.automata_class_minor = NpaClass;
+	SubsumptionSolvers.solve = fun x y -> (
+		match (x,y) with
+			(NpaType (npa1, states1, _), NpaType (npa2, states2, alpha)) -> (
+					let f info _ = "Info: " ^ string_of_int (info.NpaSubsumption.box_count) ^ " morphisms\n" in
+					match NpaSubsumption.is_subsumed npa1 npa2 states1 states2 alpha with
+						(info, None) -> (SubsumptionSolvers.Subsumed, f info)
+					|	(info, Some s) -> (SubsumptionSolvers.NotSubsumed s, f info)
+			)
+		| _ -> failwith "wrong automaton class"
+	);
+};
+SubsumptionSolvers.register {
+	SubsumptionSolvers.ident = "finite_nba";
+	SubsumptionSolvers.description = "finite nba subsumption test";
+	SubsumptionSolvers.automata_class_major = NbaClass;
+	SubsumptionSolvers.automata_class_minor = NbaClass;
+	SubsumptionSolvers.solve = fun x y -> (
+		match (x,y) with
+			(NbaType (nba1, states1, _), NbaType (nba2, states2, alpha)) -> (
+					let f info _ = "Info: " ^ string_of_int (info.FiniteNbaSubsumption.box_count) ^ " morphisms\n" in
+					match FiniteNbaSubsumption.is_subsumed nba1 nba2 states1 states2 alpha with
+						(info, None) -> (SubsumptionSolvers.Subsumed, f info)
+					|	(info, Some s) -> (SubsumptionSolvers.NotSubsumed s, f info)
+			)
+		| _ -> failwith "wrong automaton class"
+	);
+};
+SubsumptionSolvers.register {
+	SubsumptionSolvers.ident = "npvpa";
+	SubsumptionSolvers.description = "npvpa subsumption test";
+	SubsumptionSolvers.automata_class_major = NpvpaClass;
+	SubsumptionSolvers.automata_class_minor = NpvpaClass;
+	SubsumptionSolvers.solve = fun x y -> (
+		match (x,y) with
+			(NpvpaType (npvpa1, states1, _, stack1), NpvpaType (npvpa2, states2, alpha, stack2)) -> (
+					let f info _ = "Info: " ^ string_of_int (info.NpvpaSubsumption.box_count) ^ " morphisms\n" in
+					match NpvpaSubsumption.is_subsumed npvpa1 npvpa2 states1 states2 alpha stack1 stack2 with
+						(info, None) -> (SubsumptionSolvers.Subsumed, f info)
+					|	(info, Some s) -> (SubsumptionSolvers.NotSubsumed s, f info)
+			)
+		| _ -> failwith "wrong automaton class"
+	);
+};
 SubsumptionSolvers.register {
 	SubsumptionSolvers.ident = "finite_nbvpa";
 	SubsumptionSolvers.description = "finite nbvpa subsumption test";
@@ -677,5 +678,5 @@ SubsumptionSolvers.register {
 			)
 		| _ -> failwith "wrong automaton class"
 	);
-}
+};;
 

@@ -1,15 +1,4 @@
-.paths
-*.annot
-*.cmo
-*.cma
-*.cmi
-*.a
-*.o
-*.cmx
-*.cmxs
-*.cmxa
-bin/*
-.project
-Config
 .idea
 _build
+*.log
+setup.data

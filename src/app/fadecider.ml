@@ -7,7 +7,7 @@ open Tcslist;;
 open Tcstiming;;
 open Tcsargs;;
 open Arg;;
-open Solvers;;
+open Solverregistry;;
 open Base;;
 
 
@@ -15,7 +15,7 @@ module CommandLine = struct
 
 	let header =
 		"\nRamsey-based Universality and Subsumption Checker for Automata\n" ^
-		"Version 0.5, Copyright (c) 2011-2017\n\n" ^
+		"Version 0.6, Copyright (c) 2011-2017\n\n" ^
 		"Authors: Oliver Friedmann (University of Munich)\n" ^
 	    "         Felix Klaedtke (ETH Zurich)\n" ^
 	    "         Martin Lange (University of Kassel)\n" ^
@@ -30,10 +30,10 @@ module CommandLine = struct
 	let speclist = [
 		(["-u"; "--universality"], String (fun ident -> action := CheckUniversality (UniversalitySolvers.find ident)),
           "<solver>\n     universality test, available solvers are:\n" ^
-          	              UniversalitySolvers.fold (fun solver t -> t ^ "       " ^ solver.UniversalitySolvers.ident ^ " (" ^ format_automata_class solver.UniversalitySolvers.automata_class ^ ") : " ^ solver.UniversalitySolvers.description ^ "\n") "");
+          	              Solvers.UniversalitySolvers.fold (fun solver t -> t ^ "       " ^ solver.UniversalitySolvers.ident ^ " (" ^ format_automata_class solver.UniversalitySolvers.automata_class ^ ") : " ^ solver.UniversalitySolvers.description ^ "\n") "");
     (["-s"; "--subsumption"], String (fun ident -> action := CheckSubsumption (SubsumptionSolvers.find ident)),
           "<solver>\n     subsumption test, available solvers are:\n" ^
-          	              SubsumptionSolvers.fold (fun solver t -> t ^ "       " ^ solver.SubsumptionSolvers.ident ^ " (" ^ format_automata_class solver.SubsumptionSolvers.automata_class_major ^ "/" ^ format_automata_class solver.SubsumptionSolvers.automata_class_minor ^ ") : " ^ solver.SubsumptionSolvers.description ^ "\n") "");
+          	              Solvers.SubsumptionSolvers.fold (fun solver t -> t ^ "       " ^ solver.SubsumptionSolvers.ident ^ " (" ^ format_automata_class solver.SubsumptionSolvers.automata_class_major ^ "/" ^ format_automata_class solver.SubsumptionSolvers.automata_class_minor ^ ") : " ^ solver.SubsumptionSolvers.description ^ "\n") "");
 		(["-a"; "--automaton"], String (fun auto_file -> automata_second := Some (parse_automaton2 (open_in auto_file))),
 		  "<file>\n     add second automaton for subsumption test");
 		(["-pc"; "--pendingcalls"], Unit (fun _ -> check_call_collapsed := true),
