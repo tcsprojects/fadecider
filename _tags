@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 66c067612a3f6bdcfd9e8d083ef1537e)
+# DO NOT EDIT (digest: d5c1f82501c13d0fe8e93d5d5eae70fa)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -19,30 +19,30 @@ true: annot, bin_annot
 <src/*.ml{,i,y}>: package(TCSLib)
 <src/ramsey/*.ml{,i,y}>: package(TCSLib)
 # Executable fadecider-bin
-"src/app/fadecider.byte": package(TCSLib)
-"src/app/fadecider.byte": use_fadecider
+<src/app/fadecider.{native,byte}>: package(TCSLib)
+<src/app/fadecider.{native,byte}>: use_fadecider
 <src/app/*.ml{,i,y}>: package(TCSLib)
 <src/app/*.ml{,i,y}>: use_fadecider
 # Executable transform-bin
-"src/tools/transform.byte": package(TCSLib)
-"src/tools/transform.byte": use_fadecider
+<src/tools/transform.{native,byte}>: package(TCSLib)
+<src/tools/transform.{native,byte}>: use_fadecider
 # Executable subtouniv-bin
-"src/tools/subtouniv.byte": package(TCSLib)
-"src/tools/subtouniv.byte": use_fadecider
+<src/tools/subtouniv.{native,byte}>: package(TCSLib)
+<src/tools/subtouniv.{native,byte}>: use_fadecider
 # Executable toopennwa-bin
-"src/tools/toopennwa.byte": package(TCSLib)
-"src/tools/toopennwa.byte": use_fadecider
+<src/tools/toopennwa.{native,byte}>: package(TCSLib)
+<src/tools/toopennwa.{native,byte}>: use_fadecider
 # Executable collapse-bin
-"src/tools/collapse.byte": package(TCSLib)
-"src/tools/collapse.byte": use_fadecider
+<src/tools/collapse.{native,byte}>: package(TCSLib)
+<src/tools/collapse.{native,byte}>: use_fadecider
 <src/tools/*.ml{,i,y}>: package(TCSLib)
 <src/tools/*.ml{,i,y}>: use_fadecider
 # Executable randomnpa-bin
-"src/generators/randomnpa.byte": package(TCSLib)
-"src/generators/randomnpa.byte": use_fadecider
+<src/generators/randomnpa.{native,byte}>: package(TCSLib)
+<src/generators/randomnpa.{native,byte}>: use_fadecider
 # Executable randomnpvpa-bin
-"src/generators/randomnpvpa.byte": package(TCSLib)
-"src/generators/randomnpvpa.byte": use_fadecider
+<src/generators/randomnpvpa.{native,byte}>: package(TCSLib)
+<src/generators/randomnpvpa.{native,byte}>: use_fadecider
 <src/generators/*.ml{,i,y}>: package(TCSLib)
 <src/generators/*.ml{,i,y}>: use_fadecider
 # OASIS_STOP

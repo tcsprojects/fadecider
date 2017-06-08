@@ -19,32 +19,39 @@ Library "fadecider"
   BuildDepends: TCSLib
   Modules: app/Base, ramsey/Cachedtaggedtrapo, ramsey/Cachedtrapo, ramsey/Solvers, ramsey/Subsumption,
            ramsey/Taggedtrapo, ramsey/Trapo, ramsey/Universality, ramsey/Solverregistry
-PostBuildCommand: mv fadecider.* bin/fadecider ; mv transform.* bin/transform ; mv subtouniv.* bin/subtouniv ; mv toopennwa.* bin/toopennwa ; mv collapse.* bin/collapse ; mv randomnpa.* bin/randomnpa ; mv randomnpvpa.* bin/randomnpvpa
+PostBuildCommand: mv fadecider.native bin/fadecider ; mv transform.* bin/transform ; mv subtouniv.* bin/subtouniv ; mv toopennwa.* bin/toopennwa ; mv collapse.* bin/collapse ; mv randomnpa.* bin/randomnpa ; mv randomnpvpa.* bin/randomnpvpa
 Executable "fadecider-bin"
   Path: src/app
   BuildDepends: fadecider
   MainIs: fadecider.ml
+  CompiledObject: best
 Executable "transform-bin"
   Path: src/tools
   BuildDepends: fadecider
   MainIs: transform.ml
+  CompiledObject: best
 Executable "subtouniv-bin"
   Path: src/tools
   BuildDepends: fadecider
   MainIs: subtouniv.ml
+  CompiledObject: best
 Executable "toopennwa-bin"
   Path: src/tools
   BuildDepends: fadecider
   MainIs: toopennwa.ml
+  CompiledObject: best
 Executable "collapse-bin"
   Path: src/tools
   BuildDepends: fadecider
   MainIs: collapse.ml
+  CompiledObject: best
 Executable "randomnpa-bin"
   Path: src/generators
   BuildDepends: fadecider
   MainIs: randomnpa.ml
+  CompiledObject: best
 Executable "randomnpvpa-bin"
   Path: src/generators
   BuildDepends: fadecider
   MainIs: randomnpvpa.ml
+  CompiledObject: best
