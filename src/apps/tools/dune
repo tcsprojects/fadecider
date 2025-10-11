@@ -1,0 +1,7 @@
+(executables
+ (names collapse subtouniv toopennwa transform)
+ (modules collapse subtouniv toopennwa transform)
+ (libraries fadecider)
+ (flags (:standard -w -33 -w -27 -w -34))
+)
+(include_subdirs unqualified)

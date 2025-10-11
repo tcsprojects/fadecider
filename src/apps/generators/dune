@@ -1,0 +1,7 @@
+(executables
+ (names randomnpa randomnpvpa)
+ (modules randomnpa randomnpvpa)
+ (libraries fadecider)
+ (flags (:standard -w -27 -w -33))
+)
+(include_subdirs unqualified)

@@ -1,0 +1,8 @@
+(library
+ (name fadecider)
+ (public_name fadecider)
+ (libraries tcs-lib)
+ (wrapped false)
+ (flags (:standard -w -33 -w -32 -w -27 -w -34))
+)
+(include_subdirs unqualified)

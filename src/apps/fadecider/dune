@@ -1,0 +1,7 @@
+(executables
+ (names fadecider)
+ (modules fadecider)
+ (libraries fadecider)
+ (flags (:standard -w -33))
+)
+(include_subdirs unqualified)
